@@ -8,6 +8,7 @@ package esemes;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import klasses.Message;
 import klasses.PropertyReader;
 import klasses.User;
 import ui.MainForm;
@@ -21,15 +22,10 @@ public class Esemes {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         MainForm form = new MainForm();
         form.setVisible(true);
-        PropertyReader prop = new PropertyReader("configs/Database.properties");
-        try {
-            prop.ReadPropValues();
-        } catch (IOException ex) {
-            Logger.getLogger(Esemes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Message m = new Message();
     }
     
 }

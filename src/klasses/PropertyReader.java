@@ -19,6 +19,7 @@ import java.util.Properties;
  * @author "arissetyawan"<arissetyawan.campus@gmail.com>
  */
 public class PropertyReader { 
+    private Properties prop = new Properties();
     protected String result = "";
     protected String filename = "";
     InputStream inputStream;
@@ -28,8 +29,14 @@ public class PropertyReader {
         this.filename = filename;
     }
 
+    public Object get(String key)
+    {
+        Object val = this.prop.getProperty(key);
+        Console.log(val.toString());
+        return val;
+    }
 
-    public String ReadPropValues() throws IOException {
+    public Properties ReadPropValues() throws IOException {
 
         try {
             Properties prop = new Properties();
@@ -42,27 +49,13 @@ public class PropertyReader {
             } else {
                     throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
+            return prop;
 
-            Date time = new Date(System.currentTimeMillis());
-
-            // get the property value and print it out
-            System.out.println(prop.getClass());
-            String user = prop.getProperty("user");
-            String company1 = prop.getProperty("driver");
-            String company2 = prop.getProperty("host");
-            String company3 = prop.getProperty("database");
-
-            result = "Company List = " + company1 + ", " + company2 + ", " + company3;
-            System.out.println(result + "\nProgram Ran on " + time + " by user=" + user);
         } catch (Exception e) {
                 System.out.println("Exception: " + e);
         } finally {
                 inputStream.close();
         }
-        return result;
-    }
-
-    public void getPropValues() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Properties();
     }
 }
