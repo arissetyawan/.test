@@ -24,9 +24,10 @@ public class PropertyReader {
     protected String filename = "";
     InputStream inputStream;
 
-    public PropertyReader(String filename)
+    public PropertyReader(String filename) throws IOException
     {
         this.filename = filename;
+        this.prop = this.ReadPropValues();
     }
 
     public Object get(String key)
